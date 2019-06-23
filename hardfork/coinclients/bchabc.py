@@ -69,7 +69,7 @@ class BitcoinCashABCClient(BaseCoinClient):
 
         # TODO: add "status code not 200 OK" logic
         try:
-            assert req.status_code == requests.status_codes.codes.OK
+            assert req.status_code == requests.codes.OK
         except AssertionError as e:
             raise CoinClientUnexpectedException(
                 'Not 200 ok code on request') from e
