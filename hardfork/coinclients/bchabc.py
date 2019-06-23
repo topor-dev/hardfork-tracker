@@ -43,11 +43,6 @@ class BitcoinCashABCClient(BaseCoinClient):
 
     def get_median_time_past(self) -> int:
         info = self.blockchain.get_blockchain_info()
-        try:
-            info = json.loads(info)
-        except json.JSONDecodeError as e:
-            raise CoinClientUnexpectedException(
-                'Error while json decode') from e
 
         key = 'mediantime'
         try:
@@ -74,4 +69,8 @@ class BitcoinCashABCClient(BaseCoinClient):
             raise CoinClientUnexpectedException(
                 'Not 200 ok code on request') from e
 
-        return req.text
+        try:
+            return json.loads(req.text)
+        except json.JSONDecodeError as e:
+            raise CoinClientUnexpectedException(
+                'Error while json decode') from e
