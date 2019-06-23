@@ -13,3 +13,12 @@ positional arguments:
 optional arguments:  
   -h, --help  show this help message and exit
 
+---
+
+### Build docker image:
+    
+    docker build -t hardfork-tracker:latest .
+
+Run docker image:
+
+    docker run --rm -it hardfork-tracker:latest -1
