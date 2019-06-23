@@ -64,7 +64,7 @@ class BitcoinCashABCClient(BaseCoinClient):
         url = self.base_url + url_path
         try:
             req = requests.get(url, params)  # type: ignore
-        except requests.exceptions.BaseHTTPError as e:
+        except requests.exceptions.RequestException as e:
             raise CoinClientUnexpectedException('HTTP error') from e
 
         # TODO: add "status code not 200 OK" logic
