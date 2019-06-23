@@ -8,10 +8,12 @@ import hardfork
 
 
 def test_hardfork_call_monitor():
+
     fake_argv = [None, '42']
-    with patch('hardfork.__main__.monitor') as mock_monitor,\
+    with patch('hardfork.tracker.monitor') as mock_monitor,\
         patch('sys.argv', fake_argv):
-        hardfork.main()
+        from hardfork.__main__ import main
+        main()
         mock_monitor.assert_called_once()
 
 
@@ -33,5 +35,7 @@ def test_hardfork_monitor(capfd):
 
     hardfork.tracker.monitor(MockCoinClient, ts)
 
-    # one for now_ts == 41, and one for now_ts == 42 == hardfork_ts
+    # one for now_ts == ts - 2
+    # one for now_ts == ts -1
+    # and one for now_ts == ts
     assert MockCoinClient.get_median_time_past.call_count == 3

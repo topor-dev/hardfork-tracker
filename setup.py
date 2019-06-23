@@ -18,7 +18,7 @@ setup(
     python_requires='~=3.6',
     entry_points={
         'console_scripts': [
-            'hardfork-tracker=hardfork:main',
+            'hardfork-tracker=hardfork.__main__:main',
         ],
     },
 )
